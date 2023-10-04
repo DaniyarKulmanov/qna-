@@ -6,5 +6,9 @@ FactoryBot.define do
 
     correct { false }
     question
+
+    trait :fake do
+      body { nil }
+    end
   end
 end

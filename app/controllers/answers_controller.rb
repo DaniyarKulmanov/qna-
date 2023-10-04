@@ -2,8 +2,12 @@ class AnswersController < ApplicationController
 
   def create
     @question = Question.find { params[:question_id] }
-    @answer = @question.answers.create(answer_params)
-    redirect_to @question
+    @answer = @question.answers.build(answer_params)
+    if @answer.save
+      redirect_to @question
+    else
+      render "questions/show"
+    end
   end
 
   private
