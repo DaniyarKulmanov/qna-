@@ -1,15 +1,19 @@
 h1= @question.title
 p= @question.body
 
-= render 'shared/errors', resource: @question
+- if user_signed_in?
+  h4= 'Answer to question'
 
-= form_with model: [ @question, @question.answers.build ] do |f|
-  = f.label :body
-  = f.text_area :body
-  = f.check_box :correct
-  = f.label :correct, 'Correct'
-  = f.submit 'Answer'
+  = render 'shared/errors', resource: @answer
 
+  = form_with model: [ @question, @question.answers.build ] do |f|
+    = f.label :body
+    = f.text_area :body
+    = f.check_box :correct
+    = f.label :correct, 'Correct'
+    = f.submit 'Answer'
+
+h4= 'Answers'
 table
   thead
     tr
