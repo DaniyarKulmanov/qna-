@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User can answer to question', %q{
+feature 'User can answer to a question', %q{
   In order to answer a question from community
   As an authenticated user
   I'd like answer to a question
@@ -12,11 +12,12 @@ feature 'User can answer to question', %q{
     sign_in(user)
     visit question_path(question)
 
-    fill_in 'Title', with: 'Test answer'
     fill_in 'Body', with: 'Test body'
+    check 'Correct'
+
     click_on 'Answer'
 
-    expect(page).to have_content 'Test answer'
     expect(page).to have_content 'Test body'
+    expect(page.check 'Correct')
   end
 end

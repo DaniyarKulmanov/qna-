@@ -1,2 +1,19 @@
 h1= @question.title
 p= @question.body
+
+= render 'shared/errors', resource: @question
+
+= form_with model: [ @question, @question.answers.build ] do |f|
+  = f.label :body
+  = f.text_area :body
+  = f.check_box :correct
+  = f.label :correct, 'Correct'
+  = f.submit 'Answer'
+
+table
+  thead
+    tr
+      th Body
+      th Correct
+  tbody
+    = render @question.answers
