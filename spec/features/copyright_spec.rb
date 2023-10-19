@@ -17,6 +17,7 @@ feature 'User can delete only own question or answer', "
 
     scenario 'question' do
       visit questions_path
+      save_and_open_page
 
       find('tr', text: question.body).click_link('delete')
       expect(page).not_to have_content question.body
