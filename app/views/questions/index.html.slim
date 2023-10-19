@@ -1,2 +1,12 @@
+table
+  thead
+    tr
+      th 'Title'
+      th 'Body'
+  tbody
+    = render @questions
+
+p= @questions.count
+
 p= link_to 'Ask question', new_question_path
 =render @questions

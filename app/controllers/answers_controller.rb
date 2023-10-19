@@ -3,6 +3,8 @@ class AnswersController < ApplicationController
   def create
     @question = Question.find { params[:question_id] }
     @answer = @question.answers.build(answer_params)
+    @answer.author = current_user
+
     if @answer.save
       redirect_to @question
     else

@@ -15,6 +15,13 @@ feature 'User can delete only own question or answer', "
       sign_in(user)
     end
 
+    scenario 'question' do
+      visit questions_path
+
+      find('tr', text: question.body).click_link('delete')
+      expect(page).not_to have_content question.body
+    end
+
     scenario 'answer' do
       visit question_path(question)
 
@@ -22,13 +29,6 @@ feature 'User can delete only own question or answer', "
         find("tr[id=#{answer.id}]").click_link('delete')
         expect(page).not_to have_content answer.body
       end
-    end
-
-    scenario 'question' do
-      visit questions_path
-
-      find('tr', text: question.body).click_link('delete')
-      expect(page).not_to have_content question.body
     end
   end
 
