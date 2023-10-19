@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 feature 'User can log out', %q{
-        In order to enter display mode
+        In order to exit
         As an authenticated user
-        I'd like to be able to sign out
+        I'd like to be able to log out
 } do
   given(:user) { create(:user) }
 
