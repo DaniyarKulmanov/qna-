@@ -1,0 +1,23 @@
+h1= @question.title
+p= @question.body
+
+- if user_signed_in?
+  h4= 'Answer to question'
+
+  = render 'shared/errors', resource: @answer
+
+  = form_with model: [ @question, @question.answers.build ], local: false do |f|
+    = f.label :body
+    = f.text_area :body
+    = f.check_box :correct
+    = f.label :correct, 'Correct'
+    = f.submit 'Answer'
+
+h4= 'Answers'
+table
+  thead
+    tr
+      th Body
+      th Correct
+  tbody
+    = render @question.answers
