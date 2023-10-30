@@ -3,7 +3,7 @@ tr id = answer.id
   td= answer.correct
   - if user_signed_in? && user_is_an_author?(answer.author)
     td= link_to 'delete',
-            question_answer_path(answer),
+            [answer.question, answer],
             data: { turbo_method: :delete,
                     turbo_confirm: 'confirm',
                     name: answer.body }
